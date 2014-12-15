@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="steganographyModule">
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+	<title>Steganography Educational Tool</title>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">	
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body ng-controller="mainController">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#" style="font-family: 'Lobster'; font-size: 200%">SET - Steganography Educational Tool</a>
+        </div>
+
+      </div>
+    </nav>
+	
+    <!-- Begin page content -->
+    <div class="container">
+
+    	<div class="alert alert-info" role="alert" ng-hide="status.length == 0">{{status}}</div>
+
+    	<div class="row">
+			<div class="col-md-12">
+
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">Encode</h3>
+				  </div>
+				  <div class="panel-body">
+				    
+					<form role="form">
+						<div class="form-group">
+							<label for="encode.image">Container</label>
+							<input type="file" name="encode.image" id="encode.image" ng-model="encode.image" accept="image/*" required>
+						</div>
+
+						<div class="form-group">
+							<label for="encode.file">File to hide</label>
+							<input type="file" name="encode.file" id="encode.file" ng-model="encode.file" required>
+						</div>
+
+						<div class="form-group">
+							<label for="encode.password">Encrypt password</label>
+							<input type="password" class="form-control" name="encode.password" id="encode.password" ng-model="encode.password">
+						</div>
+
+						<div class="form-group">
+							<label for="encode.bits">Bits in each component</label>
+							<select class="form-control" name="encode.bits" id="encode.bits" ng-model="encode.bits">
+								<option>auto</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+								<option>6</option>
+								<option>7</option>
+								<option>8</option>
+							</select>
+						</div>
+						
+						<button type="submit" class="btn btn-primary" ng-click="encodeImage(encode)">Encode</button>
+						<a href="{{encodedObj.content}}" class="btn btn-success" download="{{encodedObj.name}}" ng-show="encodedObj.show">Download decoded file</a>
+					</form>
+
+				  </div>
+				</div>
+
+			</div>
+
+			<div class="col-md-12">
+
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">Decode</h3>
+				  </div>
+				  <div class="panel-body">
+					    
+					<form role="form">
+						<div class="form-group">
+							<label for="decode.image">Container</label>
+							<input type="file" name="decode.image" id="decode.image" ng-model="decode.image" accept="image/*" required/>
+						</div>
+
+						<div class="form-group">
+							<label for="decode.password">Decrypt password</label>
+							<input type="password" class="form-control" name="decode.password" id="decode.password" ng-model="decode.password">
+						</div>
+						
+						<button type="submit" class="btn btn-primary" ng-click="decodeImage(decode)">Decode</button>
+						<a href="{{decodedObj.content}}" class="btn btn-success" download="{{decodedObj.name}}" ng-show="decodedObj.show">Download decoded file</a>
+					</form>
+				    
+				  </div>
+				</div>
+
+			</div>
+    	</div>
+
+            
+	<div id="footer" class="container" style="margin-top: 100px;">
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="navbar-inner navbar-content-center">
+                <p class="text-muted credit">Check out the source-code and wiki: <a href="https://bitbucket.org/pedrohh/ssin-steganography">SET on Bitbucket</a>
+            </div>
+        </nav>
+    </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>-->
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-file.js"></script>
+	<script src="js/core.js"></script>
+	
+</body>
+</html>
